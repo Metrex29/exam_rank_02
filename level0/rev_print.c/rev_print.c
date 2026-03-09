@@ -17,7 +17,7 @@ LIOP a 0bud$
 $> ./rev_print | cat -e
 $ */
 
-#include "unistd.h"
+#include <unistd.h>
 
 int strlen_ft(char *s)
 {
@@ -29,22 +29,18 @@ int strlen_ft(char *s)
 
 int main(int ac, char **av)
 {
-    char *arr;
-    int i = 0;
+    int i;
+    int len;
+
     if (ac == 2)
     {
-        int len = strlen_ft(av[1]);
-
-        while (len > 0)
+        len = strlen_ft(av[1]);
+        i = len;
+        while (i >= 0)
         {
-            arr[i] = av[1][i];
-            i++;
-            len--;
-        }
-        while (arr[i])
-        {
-            write(1, &arr[i], 1);
-            i++;
+            write(1, &av[1][i--], 1);
         }
     }
+    write(1, "\n", 1);
+    return 0;
 }
